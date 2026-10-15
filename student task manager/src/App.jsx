@@ -34,6 +34,7 @@ const [Pending,setPending] = useState([0])
   setAllTask(updatedeta)}
 
   function delettask(index){
+    statuscount()
         console.log('hitting succes');
    const updatedeta = [...AllTask]
    updatedeta.splice(index,1)
