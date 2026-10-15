@@ -7,11 +7,12 @@ import TaskLists from './components/TaskList';
 function App() {
 const [ShowButton,setShowButton] = useState(true)
 const [AllTask,setAllTask] = useState([])
-const [Complited,setComplited] = useState([0])
-const [Pending,setPending] = useState([0])
+ const pending = AllTask.filter((item) => item.status === 'pending').length
+    
+ const complited =  AllTask.filter((item) => item.status === 'complited').length
 
   function handelbutton(){
-    statuscount()
+    
     setShowButton(!ShowButton)
   }
   function savetasklist(alltask){
@@ -21,7 +22,7 @@ const [Pending,setPending] = useState([0])
   }
 
   function statuschange(index){
-    statuscount()
+    
     console.log('hitting succes');
    const updatedeta = AllTask.map((Item,indexs)=>{
       if(indexs === index){
@@ -31,22 +32,19 @@ const [Pending,setPending] = useState([0])
         }
      }
   return Item})
-  setAllTask(updatedeta)}
+  setAllTask(updatedeta)
+  
+}
 
   function delettask(index){
-    statuscount()
+    
         console.log('hitting succes');
    const updatedeta = [...AllTask]
    updatedeta.splice(index,1)
   setAllTask(updatedeta)
+  
   }
-  function statuscount(){
-    const pending = AllTask.filter((item) => item.status === 'pending').length
-    const complited =  AllTask.filter((item) => item.status === 'complited').length
-    
-    setPending(pending)
-    setComplited(complited)
-  }
+ 
 
   return (
     <>
@@ -55,7 +53,7 @@ const [Pending,setPending] = useState([0])
 
     {ShowButton 
     ?<TaskForm alltask={savetasklist}  />
-     :<TaskLists   tasklist={AllTask} statusbtn={statuschange} deletbtn={delettask} pending={Pending} complited={Complited}/>
+     :<TaskLists   tasklist={AllTask} statusbtn={statuschange} deletbtn={delettask} pending={pending} complited={complited}/>
 
      }</ItemBackround>
      
