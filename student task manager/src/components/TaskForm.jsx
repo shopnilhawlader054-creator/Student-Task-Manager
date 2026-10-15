@@ -15,7 +15,9 @@ function TaskForm({alltask}){
 
       function handelsubmit(e){
         e.preventDefault()
-        if(!TaskText.name.trim())return
+        if (!TaskText.name.trim()) {
+         alert("দয়া করে একটি টাস্কের নাম লিখুন!"); 
+          return;} 
         alltask(TaskText)
         setTaskText({name:'',status:'pending'})
 
